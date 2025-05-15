@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A frontend tool to validate links and images in email preview URLs">
+    <meta name="keywords" content="email, validation, resource, links, images, validator">
+    <title>Email Resource Validator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔍</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Email Resource Validator</h1>
+            <p>Validate links and images in email preview URLs and export results as CSV</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <h2>Enter Email Preview URLs</h2>
+                <p class="instructions">Enter up to 10 email preview URLs (one per line)</p>
+                <div class="cors-notice">
+                    <p><strong>Note:</strong> Due to browser security restrictions (CORS), some URLs may not be accessible directly. For best results, use URLs from the same origin or URLs that have CORS headers enabled.</p>
+                </div>
+                <textarea id="urlInput" rows="10" placeholder="https://example.com/email-view/123&#10;https://example.com/email-view/456&#10;..."></textarea>
+                <div class="error-message" id="errorMessage"></div>
+                <button id="validateBtn" class="primary-btn">
+                    <span>Validate Resources</span>
+                    <i class="fas fa-check-circle"></i>
+                </button>
+            </section>
+
+            <section class="results-section" id="resultsSection">
+                <div class="results-header">
+                    <h2>Validation Results</h2>
+                    <button id="exportBtn" class="secondary-btn" disabled>
+                        <span>Export as CSV</span>
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+                
+                <div id="loadingIndicator" class="loading-indicator hidden">
+                    <div class="spinner"></div>
+                    <p>Validating resources...</p>
+                </div>
+                
+                <div id="resultsTableContainer" class="results-table-container hidden">
+                    <table id="resultsTable">
+                        <thead>
+                            <tr>
+                                <th>Source URL</th>
+                                <th>Resource URL</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsBody">
+                            <!-- Results will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="noResultsMessage" class="no-results-message hidden">
+                    <i class="fas fa-info-circle"></i>
+                    <p>No results to display. Please enter valid URLs and try again.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Email Resource Validator &copy; 2025 | <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub Repository</a></p>
+            <p class="disclaimer">This tool is for testing purposes only. CORS policies may limit the ability to validate some external resources.</p>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
